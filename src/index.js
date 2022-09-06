@@ -19,3 +19,9 @@ server.get('/movies', (req, resp) => {
   const response = { "success": true, "movies": movies }
   resp.json(response)
 })
+
+const staticServer = './src/public-react';
+server.use(express.static(staticServer));
+
+const staticServerImages = './src/public-movies-images';
+server.use(express.static(staticServerImages));
