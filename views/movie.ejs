@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Netflix</title>
+</head>
+
+<body class="page">
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <img className="card__img" src=<%=image %> alt={`Carátula de ${<% title %>}`} />
+        <h3 className="card__title">
+            <%= title %>
+        </h3>
+        <p className="card__description">Género: <%= gender %>
+        </p>
+        <div id="root"></div>
+</body>
+
+</html>
