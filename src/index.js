@@ -23,7 +23,9 @@ server.listen(serverPort, () => {
 
 server.get('/movies', (req, resp) => {
   if (req.query.gender === '') {
-    const query = db.prepare(`SELECT * FROM movies ORDER BY title ${req.query.sort}`);
+    const query = db.prepare(
+      `SELECT * FROM movies ORDER BY title ${req.query.sort}`
+    );
     /*   const response = { success: true, movies: movies }; */
     const response = query.all();
     resp.json({ success: true, movies: response });
@@ -38,13 +40,16 @@ server.get('/movies', (req, resp) => {
   }
 });
 
-
 server.get('/movie/:movieId', (req, res) => {
   const foundMovie = movies.find(
     (oneMovie) => oneMovie.id === req.params.movieId
   );
   console.log(foundMovie);
   res.render('movie', foundMovie);
+});
+
+server.post('/login', (req, res) => {
+  const query = db.prepare('');
 });
 
 const staticServer = './src/public-react';
