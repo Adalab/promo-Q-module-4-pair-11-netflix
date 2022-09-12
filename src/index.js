@@ -49,7 +49,17 @@ server.get('/movie/:movieId', (req, res) => {
 });
 
 server.post('/login', (req, res) => {
-  const query = db.prepare('');
+  const queryUsers = db.prepare(
+    `SELECT * FROM users WHERE mail=? AND password=?`
+  );
+  const oneUser = queryUsers.get(req.body.email, req.body.password);
+  console.log('Esto es oneUser', oneUser);
+
+  if (oneUser) {
+    res.json({ success: true, userId: oneUser.id });
+  } else {
+    res.json({ success: false, errorMessage: 'Usuaria/o no encontrada/o' });
+  }
 });
 
 const staticServer = './src/public-react';

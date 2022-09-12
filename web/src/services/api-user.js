@@ -3,10 +3,8 @@ const sendLoginToApi = (data) => {
   // CAMBIA ESTE FETCH PARA QUE APUNTE A UN ENDPOINT DE TU SERVIDOR, PIENSA SI DEBE SER GET O POST, PIENSA QUÉ DATOS DEBES ENVIAR, ETC
   return fetch('//localhost:4000/login', {
     method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
-    headers: {
-      'Content-Type': 'application/json',
-    },
   })
     .then((response) => response.json())
     .then((data) => {
