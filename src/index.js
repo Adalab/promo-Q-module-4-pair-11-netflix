@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const movies = require('./data/movies.json');
 const Database = require('better-sqlite3');
 
 // create and config server
@@ -41,9 +40,8 @@ server.get('/movies', (req, resp) => {
 });
 
 server.get('/movie/:movieId', (req, res) => {
-  const foundMovie = movies.find(
-    (oneMovie) => oneMovie.id === req.params.movieId
-  );
+  const queryMovie = db.prepare('SELECT * FROM movies WHERE id=?');
+  const foundMovie = queryMovie.get(req.params.movieId);
   console.log(foundMovie);
   res.render('movie', foundMovie);
 });

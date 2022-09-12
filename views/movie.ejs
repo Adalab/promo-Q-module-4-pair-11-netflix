@@ -3,25 +3,23 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/public-css/main.css">
+    <link rel="stylesheet" href="/main.css" />
 
     <title>Netflix</title>
 </head>
 
 <body class="page">
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <main class="main"></main>
-
-
-    <img class="img" src=<%=image %> alt={`Carátula de ${<% title %>}`} />
-        <h3 class="title">
-            <%= title %>
-        </h3>
-        <p class="description">Género: <%= gender %>
-        </p>
-
+    <main class="main">
+        <img class="img" src=<%=image %> alt={`Carátula de ${<% title %>}`} />
+            <h3 class="title">
+                <%= title %>
+            </h3>
+            <p class="description">Género: <%= gender %>
+            </p>
+    </main>
 </body>
 
 </html>
