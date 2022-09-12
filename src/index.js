@@ -23,20 +23,21 @@ server.listen(serverPort, () => {
 
 server.get('/movies', (req, resp) => {
   if (req.query.gender === '') {
-    const query = db.prepare(`SELECT * FROM movies ORDER BY title`);
+    const query = db.prepare(`SELECT * FROM movies ORDER BY title ${req.query.sort}`);
     /*   const response = { success: true, movies: movies }; */
     const response = query.all();
     resp.json({ success: true, movies: response });
     return;
   } else {
     const query = db.prepare(
-      `SELECT * FROM movies WHERE gender=? ORDER BY title`
+      `SELECT * FROM movies WHERE gender=? ORDER BY title ${req.query.sort}`
     );
     const response = query.all(req.query.gender);
     resp.json({ success: true, movies: response });
     return;
   }
 });
+
 
 server.get('/movie/:movieId', (req, res) => {
   const foundMovie = movies.find(
