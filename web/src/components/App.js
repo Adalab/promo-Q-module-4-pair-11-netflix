@@ -106,6 +106,7 @@ const App = () => {
     apiUser.sendSingUpToApi(data).then((response) => {
       if (response.success === true) {
         setUserId(response.userId);
+        ls.set('userIdLs', response.userId);
         // Si la usuaria introduce bien sus datos redireccionamos desde la página de signup al inicio de la página
         router.redirect('/');
       } else {

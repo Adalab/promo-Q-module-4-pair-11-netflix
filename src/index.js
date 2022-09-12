@@ -48,7 +48,7 @@ server.get('/movie/:movieId', (req, res) => {
 
 server.post('/login', (req, res) => {
   const queryUsers = db.prepare(
-    `SELECT * FROM users WHERE mail=? AND password=?`
+    `SELECT * FROM users WHERE email=? AND password=?`
   );
   const oneUser = queryUsers.get(req.body.email, req.body.password);
   console.log('Esto es oneUser', oneUser);
@@ -57,6 +57,27 @@ server.post('/login', (req, res) => {
     res.json({ success: true, userId: oneUser.id });
   } else {
     res.json({ success: false, errorMessage: 'Usuaria/o no encontrada/o' });
+  }
+});
+
+server.post('/signup', (req, res) => {
+  if ((req.body.email !== '', req.body.password !== '')) {
+    const queryNewUser = db.prepare(
+      'INSERT INTO users (email, password) VALUES (?, ?)'
+    );
+    const newUser = queryNewUser.run(req.body.email, req.body.password);
+    console.log(newUser);
+    const responseSuccess = {
+      success: true,
+      userId: newUser.lastInsertRowid,
+    };
+    res.json(responseSuccess);
+  } else {
+    const responseError = {
+      success: false,
+      error: 'falta completar',
+    };
+    res.json(responseError);
   }
 });
 
