@@ -52,3 +52,6 @@ server.use(express.static(staticServer));
 
 const staticServerImages = './src/public-movies-images';
 server.use(express.static(staticServerImages));
+
+const staticServerStyles = './src/public-css';
+server.use(express.static(staticServerStyles));
